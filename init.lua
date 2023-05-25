@@ -3,6 +3,7 @@ local keymap = require "core.keymap"
 local config = require "core.config"
 local style = require "core.style"
 local command = require "core.command"
+local lspconfig = require "plugins.lsp.config"
 
 ------------------------------ Themes ----------------------------------------
 
@@ -30,6 +31,14 @@ config.plugins.trimwhitespace = false
 config.plugins.restore_sidebar_width = true
 config.plugins.indentguide.highlightActiveScope = false
 
+------------------------------ LSP ----------------------------------------
+lspconfig.clangd.setup()
+config.plugins.lsp.mouse_hover = true
+config.plugins.lsp.show_diagnostics = true
+config.plugins.lsp.stop_unneeded_servers = true
+config.plugins.lsp.mouse_hover_delay = 100
+config.plugins.lsp.more_yielding = false
+
 command.perform("evergreen:toggle-highlighting", true);
 
 -- Font Preview Plugin
@@ -41,8 +50,8 @@ config.plugins.fontpreview.default_text = { "The quick brown fox jumped over the
 ------------------------------- Fonts ----------------------------------------
 
 -- customize fonts:
-style.font = renderer.font.load(USERDIR .. "/fonts/CascadiaMono.ttf", 16 * SCALE)
-style.code_font = renderer.font.load(USERDIR .. "/fonts/CascadiaMono.ttf", 22 * SCALE)
+style.font = renderer.font.load(USERDIR .. "/fonts/CascadiaMono.ttf", 18 * SCALE)
+style.code_font = renderer.font.load(USERDIR .. "/fonts/CascadiaMono.ttf", 24 * SCALE)
 --
 -- DATADIR is the location of the installed Lite XL Lua code, default color
 -- schemes and fonts.
